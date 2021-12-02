@@ -8,33 +8,37 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions.map((tx) {
-        return Card(
-          child: Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2)),
-                child: Text(
-                  '\$${tx.amount}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Column(
-                children: [
-                  Text(tx.title),
-                  Text(
-                    DateFormat('yyyy-MM-dd').format(tx.date),
+    return Container(
+      height: 300,
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return Card(
+            child: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2)),
+                  child: Text(
+                    '\$${transactions[index].amount}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                ],
-              ),
-            ],
-          ),
-        );
-      }).toList(),
+                ),
+                Column(
+                  children: [
+                    Text(transactions[index].title),
+                    Text(
+                      DateFormat('yyyy-MM-dd').format(transactions[index].date),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+        itemCount: transactions.length,
+      ),
     );
   }
 }
