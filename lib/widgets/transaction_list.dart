@@ -24,12 +24,15 @@ class TransactionList extends StatelessWidget {
                   ),
                   child: Text(
                     '\$${transactions[index].amount.toStringAsFixed(2)}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29,),
                   ),
                 ),
                 Column(
                   children: [
-                    Text(transactions[index].title),
+                    Text(
+                      transactions[index].title,
+                      style: TextStyle(fontSize: 20),
+                    ),
                     Text(
                       DateFormat('yyyy-MM-dd').format(transactions[index].date),
                     ),
